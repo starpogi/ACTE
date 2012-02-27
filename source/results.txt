@@ -1,0 +1,291 @@
+ACTE
+Version 1.0.1 - Build M891.231 - Engine CROWELL - Platform UNIX
+Testing in PHO307 Linux via SSH
+
+[PHP PARSER BEGIN HERE]
+
+
+
+[STUDENT]
+/Users/jeff/Downloads/bash/bknorton_Lab1
+[COMPILER LOG BEGIN]
+Undefined symbols:
+  "_main", referenced from:
+      start in crt1.10.6.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+Undefined symbols:
+  "_main", referenced from:
+      start in crt1.10.6.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+Undefined symbols:
+  "_main", referenced from:
+      start in crt1.10.6.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+[COMPILER LOG END]
+
+[TEST BEGIN]
+Q1 fail
+Q2 fail
+Q3 fail
+Q4 pass
+[RANGE]
+Enter your character: Offset (enter 0 to convert case): Don't input negative offsets
++++[TEST 1]
+Enter your character: Offset (enter 0 to convert case): Your character is: K
+Press 1 to quit: 
++++[TEST 2]
+Enter your character: Offset (enter 0 to convert case): Your character is: A
+Press 1 to quit: 
++++[TEST 3]
+Enter your character: Offset (enter 0 to convert case): Your character is: b
+Press 1 to quit: 
++++[TEST 4]
+Enter your character: Offset (enter 0 to convert case): Error. Can't change signs on non-letters
++++[TEST 5]
+Enter your character: Offset (enter 0 to convert case): Your character is: #
+Press 1 to quit: 
++++[TEST 7]
+Enter your character: Offset (enter 0 to convert case): Your character is: _
+Press 1 to quit: 
+[TEST END]
+
+
+[STUDENT]
+/Users/jeff/Downloads/bash/bppao_Lab1
+[COMPILER LOG BEGIN]
+[COMPILER LOG END]
+
+[TEST BEGIN]
+Q1 pass
+[RANGE]
+Enter the information for the first triangle:
+Base: Invalid input. Please enter a positive integer.
+Base: Height: Invalid input. Please enter a positive integer.
+Height: Second Triangle:
+Base: Invalid input. Please enter a positive integer.
+Base: Height: Invalid input. Please enter a positive integer.
+Height: Triangle 2 is larger by 4 units.
++++[BIG 1]
+Enter the information for the first triangle:
+Base: Height: Second Triangle:
+Base: Height: Triangle 1 is larger by 7.9064e+08 units.
++++[BIG 2]
+Enter the information for the first triangle:
+Base: Height: Second Triangle:
+Base: Height: Triangle 2 is larger by 3.41698e+06 units.
++++[BASIC 1]
+Enter the information for the first triangle:
+Base: Height: Second Triangle:
+Base: Height: Triangle 1 is larger by 2.5 units.
++++[BASIC 2]
+Enter the information for the first triangle:
+Base: Height: Second Triangle:
+Base: Height: Triangle 2 is larger by 24.5 units.
+Q2 pass
+[MENU RANGE]
+This program converts numbers among cups, pints, and liters.
+
+Menu:
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+Liters to Cups (enter 5)
+Enter a number: Invalid input. Enter a number: Invalid input. Enter a number: Invalid input. Enter a number: Invalid input. Enter a number: Invalid input. Enter a number: Invalid input. Enter a number: Invalid input. Enter a number: Invalid input. Enter a number: Enter the amount in Pints: 2 Pints is 0.946 Liters.
++++[PINTS->LITERS]
+This program converts numbers among cups, pints, and liters.
+
+Menu:
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+Liters to Cups (enter 5)
+Enter a number: Enter the amount in Pints: 15 Pints is 7.095 Liters.
++++[PINTS->CUPS]
+This program converts numbers among cups, pints, and liters.
+
+Menu:
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+Liters to Cups (enter 5)
+Enter a number: Enter the amount in Pints: 7 Pints is 14 Cups.
++++[CUPS->PINTS]
+This program converts numbers among cups, pints, and liters.
+
+Menu:
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+Liters to Cups (enter 5)
+Enter a number: Enter the amount in Cups: 8 Cups is 4 Pints.
++++[CUPS->LITERS]
+This program converts numbers among cups, pints, and liters.
+
+Menu:
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+Liters to Cups (enter 5)
+Enter a number: Enter the amount in Cups: 10 Cups is 2.37 Liters.
++++[LITERS->PINTS]
+This program converts numbers among cups, pints, and liters.
+
+Menu:
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+Liters to Cups (enter 5)
+Enter a number: Enter the amount in Liters: 12 Liters is 25.356 Pints.
++++[LITERS->CUPS]
+This program converts numbers among cups, pints, and liters.
+
+Menu:
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+Liters to Cups (enter 5)
+Enter a number: Enter the amount in Liters: 17 Liters is 71.859 Cups.
+Q3 pass
+[RANGE]
+Enter two integers between 0 and 999,999.
+First integer: Invalid input. Enter two integers between 0 and 999,999: Invalid input. Enter two integers between 0 and 999,999: Second integer: Hamming distance between 5 and 7 is 1.
++++[TEST 1]
+Enter two integers between 0 and 999,999.
+First integer: Second integer: Hamming distance between 2532 and 2551 is 2.
++++[TEST 2]
+Enter two integers between 0 and 999,999.
+First integer: Second integer: Hamming distance between 132 and 910132 is 2.
++++[TEST 3]
+Enter two integers between 0 and 999,999.
+First integer: Second integer: Hamming distance between 50 and 1523 is 4.
+Q4 pass
+[RANGE]
+Enter character: Offset (enter 0 to convert case): Invalid offset. Please try again: New character: H
++++[TEST 1]
+Enter character: Offset (enter 0 to convert case): New character: K
++++[TEST 2]
+Enter character: Offset (enter 0 to convert case): New character: A
++++[TEST 3]
+Enter character: Offset (enter 0 to convert case): New character: b
++++[TEST 4]
+Enter character: Offset (enter 0 to convert case): New character: 3
++++[TEST 5]
+Enter character: Offset (enter 0 to convert case): New character: #
++++[TEST 7]
+Enter character: Offset (enter 0 to convert case): New character: _
+[TEST END]
+
+
+[STUDENT]
+/Users/jeff/Downloads/bash/cbernard_lab1
+[COMPILER LOG BEGIN]
+[COMPILER LOG END]
+
+[TEST BEGIN]
+Q1 pass
+[RANGE]
+Enter the information for the first triangle:
+Base:Height:Second triangle:
+Base:Height:Error: one or both triangles are non-existent
++++[BIG 1]
+Enter the information for the first triangle:
+Base:Height:Second triangle:
+Base:Height:Triangle 1 is bigger by 7.9064e+08 units.
++++[BIG 2]
+Enter the information for the first triangle:
+Base:Height:Second triangle:
+Base:Height:Triangle 2 is bigger by 3.41698e+06 units.
++++[BASIC 1]
+Enter the information for the first triangle:
+Base:Height:Second triangle:
+Base:Height:Triangle 1 is bigger by 2.5 units.
++++[BASIC 2]
+Enter the information for the first triangle:
+Base:Height:Second triangle:
+Base:Height:Triangle 2 is bigger by 24.5 units.
+Q2 pass
+[MENU RANGE]
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+liters to Cups (enter 5)
+?:Error: Incorrect Conversion choice
+?:Error: Incorrect Conversion choice
+?:Error: Incorrect Conversion choice
+?:Error: Incorrect Conversion choice
+?:Error: Incorrect Conversion choice
+?:Error: Incorrect Conversion choice
+?:Error: Incorrect Conversion choice
+?:Error: Incorrect Conversion choice
+?:Enter the amount of Pints:2 Pints is 0.946 Liters.
++++[PINTS->LITERS]
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+liters to Cups (enter 5)
+?:Enter the amount of Pints:15 Pints is 7.095 Liters.
++++[PINTS->CUPS]
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+liters to Cups (enter 5)
+?:Enter the amount of Pints:7 Pints is 14 Cups.
++++[CUPS->PINTS]
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+liters to Cups (enter 5)
+?:Enter the amount of Cups:8 Cups is 4 Pints.
++++[CUPS->LITERS]
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+liters to Cups (enter 5)
+?:Enter the amount of Cups:10 Cups is 2.37 Liters.
++++[LITERS->PINTS]
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+liters to Cups (enter 5)
+?:Enter the amount of Liters:12 Liters is 25.37 Pints.
++++[LITERS->CUPS]
+Pints to Liters (enter 0)
+Pints to Cups (enter 1)
+Cups to Pints (enter 2)
+Cups to Liters (enter 3)
+Liters to Pints (enter 4)
+liters to Cups (enter 5)
+?:Enter the amount of Liters:17 Liters is 71.73 Cups.
+Q3 pass
+[RANGE]
+Enter two integers between 0 and 999999: 
+Hamming distance between -2 and -5 is 2.

@@ -1,0 +1,199 @@
+#!/bin/bash
+
+i="/Users/jeff/Downloads/source"
+
+echo "Automated Compiler and Test Environment ACTE"
+echo "Version 1.0.1 - Build M891.231 - Engine CROWELL - Platform UNIX"
+echo "by Javier Onglao, made 2/22/2012"
+echo ""
+echo ""
+echo "//// Begin check of all subfolders..."
+echo ""
+
+echo "ACTE" > $i/results.txt
+echo "Version 1.0.1 - Build M891.231 - Engine CROWELL - Platform UNIX" >> $i/results.txt
+echo "Testing in PHO307 Linux via SSH" >> $i/results.txt
+echo "" >> $i/results.txt
+echo "[PHP PARSER BEGIN HERE]" >> $i/results.txt
+echo "" >> $i/results.txt
+
+# Begin Directory Scan
+for dir in /Users/jeff/Downloads/bash/*; do
+cd $dir
+
+echo "CHECKING: $dir"
+
+# Remove traces of executable
+rm -rf q1 q2 q3 q4
+
+echo "" >> $i/results.txt
+echo "" >> $i/results.txt
+echo "[STUDENT]" >> $i/results.txt
+pwd >> $i/results.txt
+
+## Compile using G++
+echo "[COMPILER LOG BEGIN]" >> $i/results.txt
+g++ -o q1 Q1.cpp 2>> $i/results.txt
+g++ -o q2 Q2.cpp 2>> $i/results.txt
+g++ -o q3 Q3.cpp 2>> $i/results.txt
+g++ -o q4 Q4.cpp 2>> $i/results.txt
+echo "[COMPILER LOG END]" >> $i/results.txt
+echo "" >> $i/results.txt
+echo "" >> $i/killlog
+echo "[TEST BEGIN]" >> $i/results.txt
+for j in 1 2 3 4
+do
+	if [ -x ./q$j ]
+	then
+		echo "Q$j pass" >> $i/results.txt
+		echo "  Q$j COMPILE: pass "
+		if [ $j == 1 ]
+		then
+			echo "      RANGE: done"
+			echo "[RANGE]" >> $i/results.txt
+				./q$j < $i/q$j/range >> $i/results.txt &
+				sleep 5
+				killall q1 2>>$i/killlog
+			echo "      BIG 1: done"
+			echo "+++[BIG 1]" >> $i/results.txt
+				./q$j < $i/q$j/big1 >> $i/results.txt &
+				sleep 5
+				killall q1 2>>$i/killlog
+			echo "      BIG 2: done"
+			echo "+++[BIG 2]" >> $i/results.txt
+				./q$j < $i/q$j/big2 >> $i/results.txt &
+				sleep 5
+				killall q1 2>>$i/killlog
+			echo "      BASIC 1: done"
+			echo "+++[BASIC 1]" >> $i/results.txt
+				./q$j < $i/q$j/basic1 >> $i/results.txt &
+				sleep 5
+				killall q1 2>>$i/killlog
+			echo "      BASIC 2: done"
+			echo "+++[BASIC 2]" >> $i/results.txt
+				./q$j < $i/q$j/basic2 >> $i/results.txt &
+				sleep 5
+				killall q1 2>>$i/killlog
+				
+		fi
+		if [ $j == 2 ]
+		then
+			echo "      MENU RANGE: done"
+			echo "[MENU RANGE]" >> $i/results.txt
+				./q$j < $i/q$j/range >> $i/results.txt  &
+				sleep 5
+				killall q2 2>>$i/killlog
+
+			echo "      PINTS->LITERS: done"
+			echo "+++[PINTS->LITERS]" >> $i/results.txt
+				./q$j < $i/q$j/p2l >> $i/results.txt  &
+				sleep 5
+				killall q2 2>>$i/killlog
+
+			echo "      PINTS->CUPS: done"
+			echo "+++[PINTS->CUPS]" >> $i/results.txt
+				./q$j < $i/q$j/p2c >> $i/results.txt  &
+				sleep 5
+				killall q2 2>>$i/killlog
+
+			echo "      CUPS->PINTS: done"
+			echo "+++[CUPS->PINTS]" >> $i/results.txt
+				./q$j < $i/q$j/c2p >> $i/results.txt  &
+				sleep 5
+				killall q2 2>>$i/killlog
+
+			echo "      CUPS->LITERS: done"
+			echo "+++[CUPS->LITERS]" >> $i/results.txt
+				./q$j < $i/q$j/c2l >> $i/results.txt  &
+				sleep 5
+				killall q2 2>>$i/killlog
+
+			echo "      LITERS->PINTS: done"
+			echo "+++[LITERS->PINTS]" >> $i/results.txt
+				./q$j < $i/q$j/l2p >> $i/results.txt  &
+				sleep 5
+				killall q2 2>>$i/killlog
+
+			echo "      LITERS->CUPS: done"
+			echo "+++[LITERS->CUPS]" >> $i/results.txt
+				./q$j < $i/q$j/l2c >> $i/results.txt   &
+				sleep 5
+				killall q2 2>>$i/killlog
+
+
+		fi
+		if [ $j == 3 ]
+		then
+			echo "      RANGE: done"
+			echo "[RANGE]" >> $i/results.txt
+				./q$j < $i/q$j/range >> $i/results.txt  &
+				sleep 5
+				killall q3 2>>$i/killlog
+
+			echo "      TEST 1: done"
+			echo "+++[TEST 1]" >> $i/results.txt
+				./q$j < $i/q$j/test1 >> $i/results.txt   &
+				sleep 5
+				killall q3 2>>$i/killlog
+
+			echo "      TEST 2: done"
+			echo "+++[TEST 2]" >> $i/results.txt
+				./q$j < $i/q$j/test2 >> $i/results.txt   &
+				sleep 5
+				killall q3 2>>$i/killlog
+
+			echo "      TEST 3: done"
+			echo "+++[TEST 3]" >> $i/results.txt
+				./q$j < $i/q$j/test3 >> $i/results.txt   &
+				sleep 5
+				killall q3 2>>$i/killlog
+
+
+		fi
+		if [ $j == 4 ]
+		then
+			echo "      RANGE: done"
+			echo "[RANGE]" >> $i/results.txt
+				./q$j < $i/q$j/range >> $i/results.txt &
+				sleep 5
+				killall q4 2>>$i/killlog
+			echo "      TEST 1: done"
+			echo "+++[TEST 1]" >> $i/results.txt
+				./q$j < $i/q$j/1 >> $i/results.txt  &
+				sleep 5
+				killall q4 2>>$i/killlog
+			echo "      TEST 2: done"
+			echo "+++[TEST 2]" >> $i/results.txt
+				./q$j < $i/q$j/2 >> $i/results.txt  &
+				sleep 5
+				killall q4 2>>$i/killlog
+			echo "      TEST 3: done"
+			echo "+++[TEST 3]" >> $i/results.txt
+				./q$j < $i/q$j/3 >> $i/results.txt &
+				sleep 5
+				killall q4 2>>$i/killlog
+			echo "      TEST 4: done"
+			echo "+++[TEST 4]" >> $i/results.txt
+				./q$j < $i/q$j/4 >> $i/results.txt &
+				sleep 5
+				killall q4 2>>$i/killlog
+			echo "      TEST 5: done"
+			echo "+++[TEST 5]" >> $i/results.txt
+				./q$j < $i/q$j/5 >> $i/results.txt  &
+				sleep 5
+				killall q4 2>>$i/killlog
+			echo "      TEST 6: done"
+			echo "+++[TEST 7]" >> $i/results.txt
+				./q$j < $i/q$j/6 >> $i/results.txt  &
+				sleep 5
+				killall q4 2>>$i/killlog
+			fi
+	else
+		echo "Q$j fail" >> $i/results.txt
+		echo "  Q$j COMPILE: fail "
+	fi
+done
+echo "[TEST END]" >> $i/results.txt
+cd ..
+done
+

@@ -1,0 +1,23 @@
+﻿Build started 2/20/2012 11:22:26 PM.
+     1>Project "\\ad\eng\users\k\o\kokis\my documents\visual studio 2010\Projects\kokis_Lab1\kokis_Lab1\kokis_Lab1.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\kokis_Lab1.unsuccessfulbuild".
+       ClCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\ad\eng\users\k\o\kokis\my documents\visual studio 2010\Projects\kokis_Lab1\Debug\kokis_Lab1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\kokis_Lab1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"\\ad\eng\users\k\o\kokis\my documents\visual studio 2010\Projects\kokis_Lab1\Debug\kokis_Lab1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\ad\eng\users\k\o\kokis\my documents\visual studio 2010\Projects\kokis_Lab1\Debug\kokis_Lab1.lib" /MACHINE:X86 Debug\kokis_Lab1.exe.embed.manifest.res
+         Debug\Q1.obj
+         Debug\Q2.obj
+         Debug\Q3.obj
+         Debug\Q4.obj
+     1>Q2.obj : error LNK2005: _main already defined in Q1.obj
+     1>Q3.obj : error LNK2005: _main already defined in Q1.obj
+     1>Q4.obj : error LNK2005: _main already defined in Q1.obj
+     1>\\ad\eng\users\k\o\kokis\my documents\visual studio 2010\Projects\kokis_Lab1\Debug\kokis_Lab1.exe : fatal error LNK1169: one or more multiply defined symbols found
+     1>Done Building Project "\\ad\eng\users\k\o\kokis\my documents\visual studio 2010\Projects\kokis_Lab1\kokis_Lab1\kokis_Lab1.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.01
