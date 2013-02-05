@@ -1,199 +1,246 @@
-#!/bin/bash
+#!/bin/sh
 
-i="/Users/jeff/Downloads/source"
+##
+##   AUTO-COMPILE AND TEST ENVIRONMENT
+##
+##    ACTE
+##
+##    SHELL SCRIPT
+##     DEVELOPED BY JAVIER ONGLAO
+##    Boston University College of Engineering
+##
+##    version 2.1.3
+##
+##    www.github.com/starpogi/ACTE
+##
+##    You may modify the variables below to meet your specific needs.
+##    You may only modify up until the "DO NOT MODIFY" line.
+##
 
-echo "Automated Compiler and Test Environment ACTE"
-echo "Version 1.0.1 - Build M891.231 - Engine CROWELL - Platform UNIX"
-echo "by Javier Onglao, made 2/22/2012"
-echo ""
-echo ""
-echo "//// Begin check of all subfolders..."
-echo ""
+## AUTO-COMPILE ENVIRONMENT
+##   -- Define the compiler, and the
+##    associated compiler flags (CFLAGS) with it
+##   -- Define the array,
+##      and then define what should be compiled using the format QUESTIONX
+COMPILER=g++
+CFLAGS=""
+QUESTIONARRAY="1 2 3 4 5 6 7"
+QUESTION1="Q1.cpp"
+QUESTION2="Q2.cpp"
+QUESTION3="Q3.cpp"
+QUESTION4="Q4.cpp"
+QUESTION5="Q5.cpp"
+QUESTION6="Q6.cpp"
+QUESTION7="Q7.txt"
 
-echo "ACTE" > $i/results.txt
-echo "Version 1.0.1 - Build M891.231 - Engine CROWELL - Platform UNIX" >> $i/results.txt
-echo "Testing in PHO307 Linux via SSH" >> $i/results.txt
-echo "" >> $i/results.txt
-echo "[PHP PARSER BEGIN HERE]" >> $i/results.txt
-echo "" >> $i/results.txt
+## AUTO-GRADER ENVIRONMENT: Use only when there is a specialized script to handle $RESULTSLOG
+##    This is OPTIONAL.
+USEAUTOGRADER="TRUE"
+AUTOGRADERINFO="PHP 5.0"
+AUTOGRADEREXECUTE="firefox -new-window http://d1.journeys.com.ph/bash/update.php?f=/home/jtonglao/Work/source/results.txt"
 
-# Begin Directory Scan
-for dir in /Users/jeff/Downloads/bash/*; do
-cd $dir
+## TESTING ENVIRONMENT
+TESTINGINFO="Testing in PHO307 Linux via SSH"
+GRADELABEL="Final Exam"
+RESULTSLOG="results.txt"
 
-echo "CHECKING: $dir"
+## DIRECTORY DEFINITIONS
+##    Grade Dir: Where the students' files are located.
+##               Script will recursively compile and test each subfolder in this directory.
+##    Source Dir: Where the test parameters and the results file are located.
+ROOTDIR=$(pwd)
+GRADEDIR="$ROOTDIR/students"
+SOURCEDIR="$ROOTDIR/source"
 
-# Remove traces of executable
-rm -rf q1 q2 q3 q4
+################# DO NOT MODIFY BELOW THIS LINE ########################################
 
-echo "" >> $i/results.txt
-echo "" >> $i/results.txt
-echo "[STUDENT]" >> $i/results.txt
-pwd >> $i/results.txt
+## SHELL-SPECIFIC VARIABLES
+STARTDIR=$(pwd)
+VERSION="2.1.3"
+GPPVERSION=$($COMPILER -dumpversion)
 
-## Compile using G++
-echo "[COMPILER LOG BEGIN]" >> $i/results.txt
-g++ -o q1 Q1.cpp 2>> $i/results.txt
-g++ -o q2 Q2.cpp 2>> $i/results.txt
-g++ -o q3 Q3.cpp 2>> $i/results.txt
-g++ -o q4 Q4.cpp 2>> $i/results.txt
-echo "[COMPILER LOG END]" >> $i/results.txt
-echo "" >> $i/results.txt
-echo "" >> $i/killlog
-echo "[TEST BEGIN]" >> $i/results.txt
-for j in 1 2 3 4
-do
-	if [ -x ./q$j ]
-	then
-		echo "Q$j pass" >> $i/results.txt
-		echo "  Q$j COMPILE: pass "
-		if [ $j == 1 ]
-		then
-			echo "      RANGE: done"
-			echo "[RANGE]" >> $i/results.txt
-				./q$j < $i/q$j/range >> $i/results.txt &
-				sleep 5
-				killall q1 2>>$i/killlog
-			echo "      BIG 1: done"
-			echo "+++[BIG 1]" >> $i/results.txt
-				./q$j < $i/q$j/big1 >> $i/results.txt &
-				sleep 5
-				killall q1 2>>$i/killlog
-			echo "      BIG 2: done"
-			echo "+++[BIG 2]" >> $i/results.txt
-				./q$j < $i/q$j/big2 >> $i/results.txt &
-				sleep 5
-				killall q1 2>>$i/killlog
-			echo "      BASIC 1: done"
-			echo "+++[BASIC 1]" >> $i/results.txt
-				./q$j < $i/q$j/basic1 >> $i/results.txt &
-				sleep 5
-				killall q1 2>>$i/killlog
-			echo "      BASIC 2: done"
-			echo "+++[BASIC 2]" >> $i/results.txt
-				./q$j < $i/q$j/basic2 >> $i/results.txt &
-				sleep 5
-				killall q1 2>>$i/killlog
-				
-		fi
-		if [ $j == 2 ]
-		then
-			echo "      MENU RANGE: done"
-			echo "[MENU RANGE]" >> $i/results.txt
-				./q$j < $i/q$j/range >> $i/results.txt  &
-				sleep 5
-				killall q2 2>>$i/killlog
+######### CHECK FOLDERS BEFORE PROCEEDING ############################################
+######    attempt to inform the user to install the parts ##############################
+if [ ! -d $SOURCEDIR ]
+then
+    mkdir $SOURCEDIR
+fi
 
-			echo "      PINTS->LITERS: done"
-			echo "+++[PINTS->LITERS]" >> $i/results.txt
-				./q$j < $i/q$j/p2l >> $i/results.txt  &
-				sleep 5
-				killall q2 2>>$i/killlog
+if [ ! -d $GRADEDIR ]
+then
+    mkdir $GRADEDIR
+fi
 
-			echo "      PINTS->CUPS: done"
-			echo "+++[PINTS->CUPS]" >> $i/results.txt
-				./q$j < $i/q$j/p2c >> $i/results.txt  &
-				sleep 5
-				killall q2 2>>$i/killlog
+## BEGIN GRADING HERE
+##     WE WILL DISPLAY THE INFORMATION FIRST
+##    THEN PROCEED FURTHER TO GRADE
 
-			echo "      CUPS->PINTS: done"
-			echo "+++[CUPS->PINTS]" >> $i/results.txt
-				./q$j < $i/q$j/c2p >> $i/results.txt  &
-				sleep 5
-				killall q2 2>>$i/killlog
+echo -e "## ##########################################################################"
+echo -e "## AUTO-COMPILE AND TEST ENVIRONMENT"
+echo -e "##    ACTE "
+echo -e "##    Version $VERSION -- Built 2/22/2012 - Engine CROWELL - Platform UNIX"
+echo -e "##    Developed by Javier Onglao "
+echo -e "##    Developed for EC327 Software Engineering Spring 2012"
+echo -e "##    Boston University College of Engineering"
+echo -e "##    www.github.com/starpogi/ACTE"
+echo -e "## ##########################################################################"
+echo -e "\>\>\>"
+echo -e "\>\>\>    $GRADELABEL"
+echo -e "\>\>\>    $TESTINGINFO"
+echo -e "\>\>\>    $COMPILER $GPPVERSION"
+echo -e "\>\>\>"
+echo -e "///////////////////////////// LEGEND ////////////////////////////////////////"
+echo -e ""
+echo -e "    [/] Pass        [-] Pass with Warnings        [x] Fail"
+echo -e "    "
+echo -e "/////////////////////////////////////////////////////////////////////////////"
+echo -e ""
+echo -e ""
 
-			echo "      CUPS->LITERS: done"
-			echo "+++[CUPS->LITERS]" >> $i/results.txt
-				./q$j < $i/q$j/c2l >> $i/results.txt  &
-				sleep 5
-				killall q2 2>>$i/killlog
+echo -e "## ##########################################################################" > $SOURCEDIR/$RESULTSLOG
+echo -e "## AUTO-COMPILE AND TEST ENVIRONMENT                                          "    >> $SOURCEDIR/$RESULTSLOG
+echo -e "##    ACTE                                                                       "    >> $SOURCEDIR/$RESULTSLOG
+echo -e "##    Version $VERSION -- Built 2/22/2012 - Engine CROWELL - Platform UNIX         "    >> $SOURCEDIR/$RESULTSLOG
+echo -e "##    Developed by Javier Onglao                                                   " >> $SOURCEDIR/$RESULTSLOG
+echo -e "##    Boston University College of Engineering                                  " >> $SOURCEDIR/$RESULTSLOG
+echo -e "##    Developed for EC327 Software Engineering Spring 2012                      " >> $SOURCEDIR/$RESULTSLOG
+echo -e "## ##########################################################################" >> $SOURCEDIR/$RESULTSLOG
+echo -e "\>\>\>                                                                          " >> $SOURCEDIR/$RESULTSLOG
+echo -e "\>\>\>    $GRADELABEL                                                                  " >> $SOURCEDIR/$RESULTSLOG
+echo -e "\>\>\>    $TESTINGINFO                                                                " >> $SOURCEDIR/$RESULTSLOG
+echo -e "\>\>\>    $COMPILER $GPPVERSION                                                                " >> $SOURCEDIR/$RESULTSLOG
+echo -e "\>\>\>                                                                          " >> $SOURCEDIR/$RESULTSLOG
+echo -e "///////////////////////////// LEGEND ///////////////////////////////////////////////" >> $SOURCEDIR/$RESULTSLOG
+echo -e "                                                                                     " >> $SOURCEDIR/$RESULTSLOG
+echo -e "    [/] Pass        [-] Pass with Warnings        [x] Fail                             " >> $SOURCEDIR/$RESULTSLOG
+echo -e "                                                                                     " >> $SOURCEDIR/$RESULTSLOG
+echo -e "////////////////////////////////////////////////////////////////////////////////////" >> $SOURCEDIR/$RESULTSLOG
+echo -e "" >> $SOURCEDIR/$RESULTSLOG
+echo -e "" >> $SOURCEDIR/$RESULTSLOG
 
-			echo "      LITERS->PINTS: done"
-			echo "+++[LITERS->PINTS]" >> $i/results.txt
-				./q$j < $i/q$j/l2p >> $i/results.txt  &
-				sleep 5
-				killall q2 2>>$i/killlog
+## Begin Directory Scan
+for dir in $GRADEDIR/*; do
 
-			echo "      LITERS->CUPS: done"
-			echo "+++[LITERS->CUPS]" >> $i/results.txt
-				./q$j < $i/q$j/l2c >> $i/results.txt   &
-				sleep 5
-				killall q2 2>>$i/killlog
-
-
-		fi
-		if [ $j == 3 ]
-		then
-			echo "      RANGE: done"
-			echo "[RANGE]" >> $i/results.txt
-				./q$j < $i/q$j/range >> $i/results.txt  &
-				sleep 5
-				killall q3 2>>$i/killlog
-
-			echo "      TEST 1: done"
-			echo "+++[TEST 1]" >> $i/results.txt
-				./q$j < $i/q$j/test1 >> $i/results.txt   &
-				sleep 5
-				killall q3 2>>$i/killlog
-
-			echo "      TEST 2: done"
-			echo "+++[TEST 2]" >> $i/results.txt
-				./q$j < $i/q$j/test2 >> $i/results.txt   &
-				sleep 5
-				killall q3 2>>$i/killlog
-
-			echo "      TEST 3: done"
-			echo "+++[TEST 3]" >> $i/results.txt
-				./q$j < $i/q$j/test3 >> $i/results.txt   &
-				sleep 5
-				killall q3 2>>$i/killlog
-
-
-		fi
-		if [ $j == 4 ]
-		then
-			echo "      RANGE: done"
-			echo "[RANGE]" >> $i/results.txt
-				./q$j < $i/q$j/range >> $i/results.txt &
-				sleep 5
-				killall q4 2>>$i/killlog
-			echo "      TEST 1: done"
-			echo "+++[TEST 1]" >> $i/results.txt
-				./q$j < $i/q$j/1 >> $i/results.txt  &
-				sleep 5
-				killall q4 2>>$i/killlog
-			echo "      TEST 2: done"
-			echo "+++[TEST 2]" >> $i/results.txt
-				./q$j < $i/q$j/2 >> $i/results.txt  &
-				sleep 5
-				killall q4 2>>$i/killlog
-			echo "      TEST 3: done"
-			echo "+++[TEST 3]" >> $i/results.txt
-				./q$j < $i/q$j/3 >> $i/results.txt &
-				sleep 5
-				killall q4 2>>$i/killlog
-			echo "      TEST 4: done"
-			echo "+++[TEST 4]" >> $i/results.txt
-				./q$j < $i/q$j/4 >> $i/results.txt &
-				sleep 5
-				killall q4 2>>$i/killlog
-			echo "      TEST 5: done"
-			echo "+++[TEST 5]" >> $i/results.txt
-				./q$j < $i/q$j/5 >> $i/results.txt  &
-				sleep 5
-				killall q4 2>>$i/killlog
-			echo "      TEST 6: done"
-			echo "+++[TEST 7]" >> $i/results.txt
-				./q$j < $i/q$j/6 >> $i/results.txt  &
-				sleep 5
-				killall q4 2>>$i/killlog
-			fi
-	else
-		echo "Q$j fail" >> $i/results.txt
-		echo "  Q$j COMPILE: fail "
-	fi
+    ## Show Directory
+    cd $dir
+   
+    STUDENT=$(pwd)
+    echo -e "[ $(echo $dir | awk 'BEGIN {FS="/"} { print $NF }') ]"
+    echo -e ""
+   
+    echo -e "[ STUDENT: $(echo $dir | awk 'BEGIN {FS="/"} { print $NF }') ]" >> $SOURCEDIR/$RESULTSLOG
+    echo -e "" >> $SOURCEDIR/$RESULTSLOG
+   
+    ## Remove traces of executable
+    rm -rf q1 q2 q3 q4 q5 q6
+   
+    ## Run tests for every student
+    for j in $QUESTIONARRAY;
+    do
+        ## Prepare to execute depending on file type
+        echo -e "    Question $j"
+        echo -e "    Question $j" >> $SOURCEDIR/$RESULTSLOG
+       
+        if [[ $(eval echo 'QUESTION$j) == *.txt ]]; then
+            ## Display Answers
+            echo -e "      [/] Display"
+            echo -e "        [/] Display" >> $SOURCEDIR/$RESULTSLOG
+       
+            cat $(eval echo 'QUESTION$j) > $SOURCEDIR/resultstemp.txt
+            sed  's/^/            /'  $SOURCEDIR/resultstemp.txt     >> $SOURCEDIR/$RESULTSLOG
+        else
+            ## Compile Source Code
+            $COMPILER $CFLAGS -o q$j $(eval echo 'QUESTION$j) 2> $SOURCEDIR/temp.txt
+           
+            if [ -x ./q$j ]
+            then
+                ## Determine if the g++ dumped any warnings via file size
+                GFILESIZE=$(ls -lah $SOURCEDIR/temp.txt | awk '{ print $5}')
+               
+                if [ $GFILESIZE -gt 0 ]
+                then
+                    echo -e "      [-] Compile"
+                    echo -e "        [-] Compile" >> $SOURCEDIR/$RESULTSLOG
+                    sed  's/^/            /'  $SOURCEDIR/temp.txt     >> $SOURCEDIR/$RESULTSLOG
+                else
+                    echo -e "      [/] Compile"
+                    echo -e "        [/] Compile" >> $SOURCEDIR/$RESULTSLOG
+                fi
+               
+                ## Perform the Tests
+                ## Load up the specific folder in the source and loop through the tests
+                if [ -d $SOURCEDIR/q$j ]
+                then
+                    for testfiles in $SOURCEDIR/q$j/*;
+                    do
+                       
+                        echo -e "      [ ] $(echo $testfiles | awk 'BEGIN {FS="/"} { print $NF }')"
+                        echo -e "        [ ] $(echo $testfiles | awk 'BEGIN {FS="/"} { print $NF }')" >> $SOURCEDIR/$RESULTSLOG
+                       
+                        # Run in the background, run for a second, then kill the process
+                        ./q$j < /$testfiles > $SOURCEDIR/resultstemp.txt > 2&1 &
+                        sleep 1
+                        killall q$j 2>&1 | tee $SOURCEDIR/killlog.txt
+                       
+                        sed  's/^/            /'  $SOURCEDIR/resultstemp.txt     >> $SOURCEDIR/$RESULTSLOG
+                       
+                    done
+                else
+                    echo -e "      [ ] Run"
+                    echo -e "        [ ] Run" >> $SOURCEDIR/$RESULTSLOG
+               
+                    ./q$j > $SOURCEDIR/resultstemp.txt 2>&1 &
+                    sleep 1
+                    killall q$j >> $SOURCEDIR/killlog.txt 2>&1
+                   
+                    sed  's/^/            /'  $SOURCEDIR/resultstemp.txt     >> $SOURCEDIR/$RESULTSLOG
+                fi
+            else
+                echo -e "      [x] Compile"
+                echo -e "        [x] Compile" >> $SOURCEDIR/$RESULTSLOG
+                sed  's/^/            /'  $SOURCEDIR/temp.txt     >> $SOURCEDIR/$RESULTSLOG
+            fi
+        fi
+        echo ""
+        echo "" >> $SOURCEDIR/$RESULTSLOG
+    done
+   
+    echo ""
+    echo "" >> $SOURCEDIR/$RESULTSLOG
+    echo "/////////////////////////////////////////////////////////////////"
+    #echo "/////////////////////////////////////////////////////////////////" >> $SOURCEDIR/$RESULTSLOG
+    cd ..
 done
-echo "[TEST END]" >> $i/results.txt
-cd ..
-done
 
+echo -e "\>\>\>"
+echo -e "\>\>\> Shell kill"
+echo -e "\>\>\>"
+#echo -e "\>\>\>" >> $SOURCEDIR/$RESULTSLOG
+#echo -e "\>\>\> Shell kill" >> $SOURCEDIR/$RESULTSLOG
+#echo -e "\>\>\>" >> $SOURCEDIR/$RESULTSLOG
+
+## Garbage Handling and collection
+if [ -e $SOURCEDIR/temp.txt ]; then
+   rm $SOURCEDIR/temp.txt
+fi
+
+if [ -e $SOURCEDIR/resultstemp.txt ]; then
+   rm $SOURCEDIR/resultstemp.txt
+fi
+
+if [ "$USEAUTOGRADER" == "TRUE" ]; then
+    echo "//////////////////////////////////////////////"
+    sleep 1
+    echo "BEGIN AUTOGRADE"
+    echo " ---> Transferring log file to PHP Parser"
+    eval $AUTOGRADEREXECUTE
+    echo " ---> Transfer complete"
+fi
+
+
+## Return to starting directory
+cd $STARTDIR
+
+echo ""
+echo "Done"
+echo ""
